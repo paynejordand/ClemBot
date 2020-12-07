@@ -174,28 +174,13 @@ class RandomCog(commands.Cog):
                     embed = discord.Embed(title = 'RAFFLE', color=Colors.ClemsonOrange, description = description)
                     await msg.edit(embed = embed)
 
-<<<<<<< HEAD
-    @commands.command(aliases=['relevant'])
-    async def xkcd(self, ctx):
-=======
     @commands.command(aliases=['xkcd'])
     async def relevant(self, ctx):
->>>>>>> Added a command that returns a random xkcd comic
         """
         Generates a possibly relevant xkcd.
         https://c.xkcd.com/random/comic/ is a random comic from the xkcd catalogue
         """
         async with aiohttp.ClientSession() as session:
-<<<<<<< HEAD
-            async with await session.get(url='https://c.xkcd.com/random/comic/') as resp:
-                if(resp.status == 200):
-                    msg = await ctx.send(resp.url)
-                    await self.bot.messenger.publish(Events.on_set_deletable, msg=msg, author=ctx.author, timeout=60)
-                else:
-                    response_info = json.loads(await resp.text())['meta']
-                    embed = discord.Embed(title='xkcd', color=Colors.Error)
-                    embed.add_field(name='Error', value=f"{response_info['status']}: {response_info['msg']}")
-=======
             async with await session.get(url="https://c.xkcd.com/random/comic/") as resp:
                 if(resp.status == 200):
                     msg = await ctx.send(resp.url)
@@ -204,7 +189,6 @@ class RandomCog(commands.Cog):
                     response_info = json.loads(await resp.text())['meta']
                     embed = discord.Embed(title="xkcd", color=Colors.Error)
                     embed.add_field(name="Error", value=f"{response_info['status']}: {response_info['msg']}")
->>>>>>> Added a command that returns a random xkcd comic
                     msg = await ctx.send(embed=embed)
                     await self.bot.messenger.publish(Events.on_set_deletable, msg=msg, author=ctx.author, timeout=60)
         
